@@ -1,0 +1,24 @@
+﻿@using Class55_Homework.Models
+@using Class55_Homework.Data
+@model ImagesModelView
+
+<h1>Home Page</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Image</th>
+        <th>Description</th>
+    </tr>
+    @foreach(Image i in Model.Images)
+    {
+        <tr>
+            <td>@i.Id</td>
+            <td>
+                <img style="width: 200px;" src="/UploadedImages/@i.FileName" />
+            </td>
+            <td>
+                @i.Description
+            </td>
+        </tr>
+    }
+</table>

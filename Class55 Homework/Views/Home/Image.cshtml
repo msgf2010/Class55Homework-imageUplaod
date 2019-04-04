@@ -1,0 +1,47 @@
+﻿@using Class55_Homework.Models
+@using Class55_Homework.Data
+@model ImageModelView
+
+<div>
+    <h3>Enter the correct password to view this image</h3>
+    <br />
+    <form method="POST" action="/home/Image?id=@Model.Image.Id">
+        <input class="form-control" name="password" type="text" placeholder="Password" value="@Model.PassedInPassword">
+        <br />
+        <button class="btn btn-info">Submit</button>
+    </form>
+</div>
+
+@if (Model.Image.Password == Model.PassedInPassword)
+{
+    <div style="margin-top:10px">
+        <table class="table table-bordered">
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Views</th>
+            </tr>
+            <tr>
+                <td>@Model.Image.Id</td>
+                <td>
+                    <img style="width: 200px;" src="/UploadedImages/@Model.Image.FileName" />
+                </td>
+                <td>
+                    @Model.Image.Description
+                </td>
+                <td>
+                    @Model.Image.Views
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+else if (Model.PassedInPassword != null && Model.Image.Password != Model.PassedInPassword)
+{
+    <br />
+    <div class="col-md-12 alert alert-danger">
+        You entered an incorrect password, try again.
+    </div>
+}
+
